@@ -19,6 +19,10 @@ public class RestaurantTable {
         this.nrOfSeats = nrOfSeats;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Integer getNrOfSeats() {
         return nrOfSeats;
     }

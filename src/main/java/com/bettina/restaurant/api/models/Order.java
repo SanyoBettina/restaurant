@@ -1,10 +1,8 @@
 package com.bettina.restaurant.api.models;
 
-import org.springframework.data.annotation.CreatedDate;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -14,15 +12,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
     @NotNull
-    private RestaurantTable restaurantTable;
+    private Long restaurantTableId;
 
-    @CreatedDate
     @Column(nullable = false)
-    private Date createdAt;
+    private Date createdAt = new java.util.Date();
 
-    @NotNull
     private Boolean paid = false;
 
     @OneToMany(cascade = CascadeType.ALL,
@@ -38,4 +33,23 @@ public class Order {
         return orderItems;
     }
 
+    public Long getRestaurantTableId() {
+        return restaurantTableId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Boolean getPaid() {
+        return paid;
+    }
+
+    public void setPaid(Boolean paid) {
+        this.paid = paid;
+    }
+
+    public void setRestaurantTableId(Long restaurantTableId) {
+        this.restaurantTableId = restaurantTableId;
+    }
 }
