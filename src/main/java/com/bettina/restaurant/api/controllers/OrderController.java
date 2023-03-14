@@ -1,6 +1,7 @@
 package com.bettina.restaurant.api.controllers;
 
 import com.bettina.restaurant.api.models.Drink;
+import com.bettina.restaurant.api.models.Food;
 import com.bettina.restaurant.api.models.Order;
 import com.bettina.restaurant.api.services.OrderService;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(
@@ -37,5 +39,20 @@ public class OrderController {
     public ResponseEntity<?> create (@RequestBody @Valid Order order) {
         orderService.save(order);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PatchMapping("{id}/paid")
+    public ResponseEntity<?> updatePaidStatus (@PathVariable Long id) {
+        Optional<Order> currentOrder = orderService.findById(id);
+
+        if (!currentOrder.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Order order = currentOrder.get();
+        order.setPaid(true);
+        orderService.save(order);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
