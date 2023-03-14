@@ -2,9 +2,7 @@ package com.bettina.restaurant.api.services;
 
 import com.bettina.restaurant.api.enums.MenuItemEnum;
 import com.bettina.restaurant.api.models.Food;
-import com.bettina.restaurant.api.models.MenuItem;
 import com.bettina.restaurant.api.repositories.FoodRepository;
-import com.bettina.restaurant.api.repositories.MenuItemRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +12,9 @@ import java.util.Optional;
 @Service
 public class FoodService {
     private FoodRepository foodRepository;
-    private MenuItemRepository menuItemRepository;
 
-    public FoodService(FoodRepository foodRepository, MenuItemRepository menuItemRepository) {
+    public FoodService(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
-        this.menuItemRepository = menuItemRepository;
     }
 
     public List<Food> getAllSorted() {
@@ -26,9 +22,7 @@ public class FoodService {
     }
 
     public void save(Food food) {
-        MenuItem menuItem = new MenuItem(MenuItemEnum.FOOD);
-        menuItemRepository.save(menuItem);
-        food.setMenuItem(menuItem);
+        food.setType(MenuItemEnum.FOOD);
         foodRepository.save(food);
     }
 
