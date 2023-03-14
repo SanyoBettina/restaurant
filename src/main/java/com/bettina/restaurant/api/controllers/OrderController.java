@@ -1,7 +1,5 @@
 package com.bettina.restaurant.api.controllers;
 
-import com.bettina.restaurant.api.models.Drink;
-import com.bettina.restaurant.api.models.Food;
 import com.bettina.restaurant.api.models.Order;
 import com.bettina.restaurant.api.services.OrderService;
 import org.springframework.http.HttpStatus;
