@@ -17,9 +17,9 @@ public class OrderItemService {
         this.orderItemRepository = orderItemRepository;
     }
 
-    /*public List<OrderItem> getItems(Long id) {
-        return orderItemRepository.finByOrderId(id);
-    }*/
+    public List<OrderItem> getItems(Long id) {
+        return orderItemRepository.findByOrderId(id);
+    }
 
     public void save(OrderItem orderItem) {
         orderItemRepository.save(orderItem);
