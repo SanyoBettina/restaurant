@@ -1,11 +1,13 @@
 package com.bettina.restaurant.api.controllers;
 
+import com.bettina.restaurant.api.dtos.RestaurantTableDTO;
 import com.bettina.restaurant.api.models.RestaurantTable;
 import com.bettina.restaurant.api.services.RestaurantTableService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,10 +32,8 @@ public class RestaurantTableController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> create(@RequestBody Map<String, String> json) {
-        int nrOfTables = Integer.parseInt(json.get("nr_of_tables"));
-        int nrOfSeats = Integer.parseInt(json.get("nr_of_seats"));
-        tableService.saveAll(nrOfTables, nrOfSeats);
+    public ResponseEntity<String> create(@RequestBody @Valid RestaurantTableDTO restaurantTableDTO) {
+        tableService.saveAll(restaurantTableDTO.getNrOfTables(), restaurantTableDTO.getNrOfSeats());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
