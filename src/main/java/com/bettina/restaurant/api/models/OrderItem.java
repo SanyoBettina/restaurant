@@ -1,7 +1,8 @@
 package com.bettina.restaurant.api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,16 +17,39 @@ public class OrderItem {
     @NotNull
     private MenuItem menuItem;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
+    @JsonBackReference
     private Order order;
 
-    @NotNull(message = "Quantity is required.")
-    @Min(value = 0, message = "Quantity must be a positive value.")
+    @Column(nullable = false)
     private Integer Quantity;
 
     @Column(nullable = false)
     private Float unitPrice;
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
+
+    public Integer getQuantity() {
+        return Quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        Quantity = quantity;
+    }
 
     public Float getUnitPrice() {
         return unitPrice;
