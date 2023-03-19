@@ -1,6 +1,8 @@
 package com.bettina.restaurant.api.models;
 
 import com.bettina.restaurant.api.enums.MenuItemEnum;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -10,6 +12,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "menu_items")
+@SQLDelete(sql = "UPDATE menu_items SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public abstract class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +23,7 @@ public abstract class MenuItem {
     @Column(nullable = false)
     private MenuItemEnum type;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     @NotBlank(message = "Name is required.")
     private String name;
 
@@ -27,7 +31,13 @@ public abstract class MenuItem {
     @Min(value = 0, message = "Price must be higher than 0.")
     private Float price;
 
+    private boolean deleted = Boolean.FALSE;
+
     public MenuItem() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public MenuItemEnum getType() {
