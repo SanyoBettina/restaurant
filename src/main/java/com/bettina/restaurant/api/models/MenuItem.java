@@ -40,10 +40,6 @@ public abstract class MenuItem {
         return id;
     }
 
-    public MenuItemEnum getType() {
-        return type;
-    }
-
     public void setType(MenuItemEnum type) {
         this.type = type;
     }

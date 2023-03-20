@@ -21,9 +21,9 @@ public class DrinkService {
         return drinkRepository.findAll((Sort.by(Sort.Direction.ASC, "name")));
     }
 
-    public void save(Drink drink) {
+    public Drink save(Drink drink) {
         drink.setType(MenuItemEnum.DRINK);
-        drinkRepository.save(drink);
+        return drinkRepository.save(drink);
     }
 
     public Optional<Drink> findById(Long id) {

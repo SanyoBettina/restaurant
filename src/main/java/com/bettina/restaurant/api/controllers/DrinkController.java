@@ -32,8 +32,8 @@ public class DrinkController {
 
     @PostMapping("")
     public ResponseEntity<?> create(@RequestBody @Valid Drink drink) {
-        drinkService.save(drink);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        Drink newDrink = drinkService.save(drink);
+        return new ResponseEntity<>(newDrink, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

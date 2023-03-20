@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum DrinkTypeEnum {
     BOTTLE("bottle"),
-    DOSE("dose");
+    DOSE("dose"),
+    CUP("cup");
 
     private String drinkType;
 

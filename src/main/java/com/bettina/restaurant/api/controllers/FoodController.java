@@ -30,8 +30,8 @@ public class FoodController {
 
     @PostMapping("")
     public ResponseEntity<?> create (@RequestBody @Valid Food food) {
-        foodService.save(food);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        Food createdFood = foodService.save(food);
+        return new ResponseEntity<>(createdFood, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
