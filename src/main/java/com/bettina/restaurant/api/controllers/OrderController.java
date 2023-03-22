@@ -34,9 +34,9 @@ public class OrderController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> create (@RequestBody @Valid Order order) {
-        orderService.save(order);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Order> create (@RequestBody @Valid Order order) {
+        Order newOrder = orderService.save(order);
+        return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
     }
 
     @PatchMapping("{id}/paid")

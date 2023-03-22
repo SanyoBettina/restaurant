@@ -28,6 +28,10 @@ public class Order {
     @JsonManagedReference
     private List<OrderItem> orderItems;
 
+    public Long getId() {
+        return id;
+    }
+
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }

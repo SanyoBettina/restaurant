@@ -20,13 +20,13 @@ public class RestaurantTableService {
         return tableRepository.findAll();
     }
 
-    public void saveAll(int nrOfTables, int nrOfSeats) {
+    public List<RestaurantTable> saveAll(int nrOfTables, int nrOfSeats) {
        List<RestaurantTable> newTables = new ArrayList<>();
        for (int i=0; i<nrOfTables; i++) {
            newTables.add(new RestaurantTable(nrOfSeats));
        }
 
-       tableRepository.saveAll(newTables);
+        return tableRepository.saveAll(newTables);
     }
 
     public Optional<RestaurantTable> findById(Long id) {

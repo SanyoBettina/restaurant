@@ -32,9 +32,9 @@ public class RestaurantTableController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> create(@RequestBody @Valid RestaurantTableDTO restaurantTableDTO) {
-        tableService.saveAll(restaurantTableDTO.getNrOfTables(), restaurantTableDTO.getNrOfSeats());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<List<RestaurantTable>> create(@RequestBody @Valid RestaurantTableDTO restaurantTableDTO) {
+        List<RestaurantTable> tables = tableService.saveAll(restaurantTableDTO.getNrOfTables(), restaurantTableDTO.getNrOfSeats());
+        return new ResponseEntity<>(tables, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

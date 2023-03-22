@@ -27,6 +27,11 @@ public class OrderItem {
 
     @Column(nullable = false)
     private Float unitPrice;
+
+    public Long getId() {
+        return id;
+    }
+
     public Order getOrder() {
         return order;
     }

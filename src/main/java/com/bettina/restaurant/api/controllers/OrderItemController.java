@@ -42,8 +42,8 @@ public class OrderItemController {
             throw new RuntimeException("Invalid menu item.");
         }
 
-        orderItemService.save(orderItemDTO, currentOrder.get(), menuItem.get());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        OrderItem orderItem = orderItemService.save(orderItemDTO, currentOrder.get(), menuItem.get());
+        return new ResponseEntity<>(orderItem, HttpStatus.CREATED);
     }
 
     @PatchMapping("order_items/{id}/{quantity}")

@@ -26,13 +26,13 @@ public class OrderItemService {
         return orderItemRepository.findById(id);
     }
 
-    public void save(OrderItemDTO orderItemDTO, Order order, MenuItem menuItem) {
+    public OrderItem save(OrderItemDTO orderItemDTO, Order order, MenuItem menuItem) {
         OrderItem orderItem = new OrderItem();
         orderItem.setOrder(order);
         orderItem.setQuantity(orderItemDTO.getQuantity());
         orderItem.setMenuItem(menuItem);
         orderItem.setUnitPrice(menuItem.getPrice());
-        orderItemRepository.save(orderItem);
+        return orderItemRepository.save(orderItem);
     }
 
     public void update(OrderItem orderItem) {
