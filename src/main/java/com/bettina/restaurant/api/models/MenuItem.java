@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "menu_items")
 @SQLDelete(sql = "UPDATE menu_items SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-public abstract class MenuItem {
+public class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,8 +44,12 @@ public abstract class MenuItem {
         this.type = type;
     }
 
+    public String getType() {
+        return type.getMenuItem();
+    }
+
     public String getName() {
-        return name;
+            return name;
     }
 
     public void setName(String name) {

@@ -13,8 +13,9 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotNull
+    @JoinColumn(name = "menu_item_id")
     private MenuItem menuItem;
 
     @ManyToOne(fetch = FetchType.LAZY)
